@@ -48,6 +48,14 @@
       <HintPath>..\packages\CommonServiceLocator.NinjectAdapter.Unofficial.3.2.2.0\lib\Net40\CommonServiceLocator.NinjectAdapter.Unofficial.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -213,6 +221,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Context\Initializer\LojaInitializer.cs" />
     <Compile Include="Context\LojaContext.cs" />
     <Compile Include="Controllers\Account2Controller.cs" />
@@ -221,6 +230,7 @@
     <Compile Include="Controllers\Api\ProdutoController.cs" />
     <Compile Include="Controllers\ArtistasController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HistoricoController.cs" />
@@ -232,6 +242,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Facade\SessionFacade.cs" />
+    <Compile Include="Hub\ChatHub.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Filters\LogActionFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,7 +282,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlbumResource.pt-BR.resx</DependentUpon>
     </Compile>
-    <Compile Include="Startup.cs" />
     <Compile Include="ValidationAnnotation\MaxWordAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +340,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -391,6 +403,7 @@
     <Content Include="Views\Pessoa\Create.cshtml" />
     <Content Include="Views\Cidade\AjaxOption.cshtml" />
     <Content Include="Views\Telefone\AjaxList.cshtml" />
+    <None Include="Views\Chat\Index.cshtml" />
     <None Include="Views\Cidade\Index.cshtml" />
     <None Include="Views\Produto\Delete.cshtml" />
     <None Include="Views\Produto\Edit.cshtml" />

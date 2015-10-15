@@ -4,7 +4,7 @@ using TreinamentoBenner.Core.Service.Interfaces;
 
 namespace TreinamentoBenner.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class PessoaController : Controller
     {
         private readonly IServicePessoa _servicePessoa;

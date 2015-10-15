@@ -26,7 +26,7 @@ namespace TreinamentoBennerTests.Factories
 
             httpContext.Items["AppSession"] = typeof (HttpSessionState)
                 .GetConstructor(
-                    BindingFlags.Public | BindingFlags.Instance,
+                    BindingFlags.NonPublic | BindingFlags.Instance,
                     null,
                     CallingConventions.Standard,
                     new[] {typeof (HttpSessionStateContainer)},
