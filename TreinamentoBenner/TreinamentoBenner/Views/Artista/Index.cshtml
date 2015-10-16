@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Artistas";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div ng-app="app" ng-controller="Controller">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="artista in artistas">
+            <td>{{artista.Id}}</td>
+            <td ng-show="!isEdit(artista)">{{artista.Nome}}</td>
+            <td ng-show="isEdit(artista)">
+                <input type="text" ng-model="edit_artista.Nome"/>
+            </td>
+            <td>
+                <button name="deleteButton" ng-click="delete(artista)" ng-show="!artista.IsLocked">
+                    Excluir
+                </button>
+            </td>
+            <td>
+                <button name="editButton" ng-click="edit(artista)" ng-show="!artista.IsLocked">
+                    Editar
+                </button>
+                <button name="updateButton" ng-click="update()" ng-show="artista.IsLocked">
+                    Atualizar
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" ng-model="add_artista.Nome"/>
+            </td>
+            <td colspan="2">
+                <button name="addButton" ng-click="add()">Adicionar</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/SignalR")
+    <script src="~/signalr/hubs"></script>
+
+
+}

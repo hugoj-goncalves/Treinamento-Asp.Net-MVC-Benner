@@ -228,6 +228,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\Api\ProdutoController.cs" />
+    <Compile Include="Controllers\ArtistaController.cs" />
     <Compile Include="Controllers\ArtistasController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Facade\SessionFacade.cs" />
+    <Compile Include="Hub\ArtistaHub.cs" />
     <Compile Include="Hub\ChatHub.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Filters\LogActionFilter.cs" />
@@ -403,6 +405,7 @@
     <Content Include="Views\Pessoa\Create.cshtml" />
     <Content Include="Views\Cidade\AjaxOption.cshtml" />
     <Content Include="Views\Telefone\AjaxList.cshtml" />
+    <None Include="Views\Artista\Index.cshtml" />
     <None Include="Views\Chat\Index.cshtml" />
     <None Include="Views\Cidade\Index.cshtml" />
     <None Include="Views\Produto\Delete.cshtml" />
