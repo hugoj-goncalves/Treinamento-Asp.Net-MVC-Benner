@@ -45,7 +45,7 @@ namespace TreinamentoBenner.Hub
                 }
 
                 Locks.AddOrUpdate(Context.ConnectionId, artista.Id, (key, oldValue) => artista.Id);
-                Clients.Caller.takeLookSuccess(artista);
+                Clients.Caller.takeLockSuccess(artista);
                 Clients.All.allLocks(Locks.Values);
             }
         }

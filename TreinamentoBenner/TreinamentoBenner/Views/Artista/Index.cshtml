@@ -49,5 +49,107 @@
     @Scripts.Render("~/bundles/SignalR")
     <script src="~/signalr/hubs"></script>
 
+    <script>
+        (function() {
+            "use strict";
 
+            var app = angular.module("app", []);
+
+            app.controller("Controller", function($scope) {
+                var hub = $.connection.artistaHub;
+
+                $scope.add = function() {
+                    hub.server.add($scope.add_artista);
+                    $scope.add_artista.Nome = "";
+                };
+
+                $scope.delete = function(artista) {
+                    hub.server.delete(artista);
+                };
+
+                $scope.edit = function(artista) {
+                    hub.server.takeLock(artista);
+                };
+
+                $scope.update = function() {
+                    hub.server.update($scope.edit_artista);
+                    $scope.edit_artista = undefined;
+                };
+
+                $scope.isEdit = function(artista) {
+                    if (typeof $scope.edit_artista === "undefined") {
+                        return false;
+                    }
+
+                    return $scope.edit_artista.Id === artista.Id;
+                };
+
+                // SignalR events
+                hub.client.add = function(artista) {
+                    $scope.$apply(function() {
+                        $scope.artistas.push(artista);
+                    });
+                };
+
+                hub.client.all = function(artistas) {
+                    $scope.artistas = artistas;
+                };
+
+                hub.client.delete = function(artista) {
+                    $scope.$apply(function() {
+                        removeById(artista.Id, $scope.artistas);
+                    });
+                };
+
+                hub.client.takeLockSuccess = function(artista) {
+                    $scope.$apply(function() {
+                        $scope.edit_artista = artista;
+                    });
+                };
+
+                hub.client.update = function(artista) {
+                    $scope.$apply(function() {
+                        updateById(artista.Id, $scope.artistas, artista);
+                    });
+                };
+
+                hub.client.allLocks = function(locks) {
+                    $scope.$apply(function() {
+                        for (var i = 0; i < $scope.artistas.length; i++) {
+                            $scope.artistas[i].IsLocked = false;
+                        }
+
+                        for (var i = 0; i < locks.length; i++) {
+                            for (var j = 0; j < locks.length; j++) {
+                                if (locks[i] === $scope.artistas[j].Id) {
+                                    $scope.artistas[j].IsLocked = true;
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                };
+
+                $.connection.hub.start().done(function () {
+                    console.log("start");
+                });
+
+                function updateById(id, array, item) {
+                    for (var i = 0; i < array.length; i++) {
+                        if (id === array[i].Id) {
+                            array[i] = item;
+                        }
+                    }
+                }
+
+                function removeById(id, array) {
+                    for (var i = 0; i < array.length; i++) {
+                        if (id === array[i].Id) {
+                            array.splice(i, 1);
+                        }
+                    }
+                }
+            });
+        })();
+    </script>
 }
